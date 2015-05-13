@@ -1,0 +1,3 @@
+[submodule "manifests/modules/cdh"]
+	path = manifests/modules/cdh
+	url = git://github.com/wikimedia/puppet-cdh.git
