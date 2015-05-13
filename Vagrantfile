@@ -11,19 +11,24 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	s.path = "scripts/cdh5_repo.sh"
   end
   
-  config.vm.provision "puppet" do |puppet|
+  config.vm.provision "pup", type: "puppet" do |puppet|
+	puppet.module_path = "manifests/modules"
 	puppet.facter = {
-      "vagrant" => "1"
+      "fqdn" => "hooli.com",
+	  "master_ipaddress" => "192.168.33.11"
     }
   end
     
-  config.vm.define "master" do |master|
+  config.vm.define "master.hooli.com" do |master|
     master.vm.network :private_network, ip: "192.168.33.11"
     master.vm.provider :virtualbox do |vb|
 	  vb.memory = 512
     end
-	#m1.vm.provision "shell", 
-	#	inline: "mesos-master --ip=192.168.33.11 --work_dir=/var/lib/mesos &",
-	#	run: "always", privileged: "true"
+	master.vm.provision "pup", type: "puppet" do |puppet|
+		puppet.facter = {
+		  "hostname" => "master",
+		  "ipaddress" => "192.168.33.11",
+		}
+	end
   end
 end
