@@ -1,0 +1,9 @@
+Non-java mappers etc, in byte format
+http://mojodna.net/2013/12/27/binary-streaming-with-hadoop-and-nodejs.html
+
+vagrant box add nfq/wheezy
+
+CDH5 - some gotchas about which versions of Java things to use
+http://gbif.blogspot.ch/2014/11/upgrading-our-cluster-from-cdh4-to-cdh5.html
+
+https://github.com/wikimedia/puppet-cdh
