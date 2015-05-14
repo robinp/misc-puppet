@@ -47,6 +47,8 @@ class my::hadoop {
             '/var/lib/hadoop/data/b',
             '/var/lib/hadoop/data/c'
         ],
+		# TODO no idea, but causes malformed xml when present.
+		#
         # You can also provide an array of dfs_name_dirs.
         dfs_name_dir       => '/var/lib/hadoop/name',
     }
@@ -66,7 +68,7 @@ node /^client[1234]$/ {
 
 node 'master' {
     require my::network
-    # include my::hadoop::master
+    include my::hadoop::master
 }
 
 node /^datanode[1234]$/ {
